@@ -1,0 +1,5 @@
+__pycache__/
+build/
+dist/
+pyToExe.bat
+ShimmerLaserTool.spec
