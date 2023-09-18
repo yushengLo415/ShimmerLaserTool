@@ -184,7 +184,7 @@ class Ui__form(object):
         font.setPointSize(40)
         self._computeButton.setFont(font)
         self._computeButton.setStyleSheet("background: rgb(140, 140, 140);\n"
-"padding-bottom: 7px;")
+        "padding-bottom: 7px;")
         self._computeButton.setObjectName("_computeButton")
         self._screenshotButton = QtWidgets.QPushButton(self._toolBarWidget)
         self._screenshotButton.setGeometry(QtCore.QRect(20, 420, 100, 40))
@@ -460,17 +460,17 @@ class Ui__form(object):
         self._table.setLayoutDirection(QtCore.Qt.LeftToRight)
         self._table.setAutoFillBackground(False)
         self._table.setStyleSheet("QTableWidget {\n"
-"    /* 设置表格的背景颜色 */\n"
-"    background-color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"QScrollBar:horizontal {\n"
-"    background:rgb(154, 154, 154);\n"
-"}\n"
-"\n"
-"QTableWidget::item {\n"
-"    background-color: rgb(255, 255, 255);  \n"
-"}")
+        "    /* 设置表格的背景颜色 */\n"
+        "    background-color: rgb(255, 255, 255);\n"
+        "}\n"
+        "\n"
+        "QScrollBar:horizontal {\n"
+        "    background:rgb(154, 154, 154);\n"
+        "}\n"
+        "\n"
+        "QTableWidget::item {\n"
+        "    background-color: rgb(255, 255, 255);  \n"
+        "}")
         self._table.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self._table.setLineWidth(0)
         self._table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -623,23 +623,23 @@ class Ui__form(object):
         self._blackIronLabel.setText(_translate("_form", "黑鐵價格"))
         self._blackIronPriceTextEdit.setToolTip(_translate("_form", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self._blackIronPriceTextEdit.setHtml(_translate("_form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0</p></body></html>"))
+        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+        "p, li { white-space: pre-wrap; }\n"
+        "</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+        "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0</p></body></html>"))
         self._whiteIronPriceTextEdit.setToolTip(_translate("_form", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self._whiteIronPriceTextEdit.setHtml(_translate("_form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
+        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+        "p, li { white-space: pre-wrap; }\n"
+        "</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+        "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
         self._whiteIronLabel.setText(_translate("_form", "白鐵價格"))
         self._aluminumPriceTextEdit.setToolTip(_translate("_form", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self._aluminumPriceTextEdit.setHtml(_translate("_form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
+        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+        "p, li { white-space: pre-wrap; }\n"
+        "</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+        "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
         self._aluminumLabel_.setText(_translate("_form", "鋁價格"))
         self._plusButton.setText(_translate("_form", "+"))
         self._minusButton.setText(_translate("_form", "-"))
@@ -696,11 +696,3 @@ class Ui__form(object):
         item.setText(_translate("_form", "合計"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    _form = QtWidgets.QWidget()
-    ui = Ui__form()
-    ui.setupUi(_form)
-    _form.show()
-    sys.exit(app.exec_())
