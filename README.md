@@ -7,10 +7,12 @@ Calculating laser cutting cost and generating a sales slip
 ## How to use
 1. Input the price of different metal
 2. Click/Minus plus button to add new products/delete products
-3. Input the product details, including product name, count, metal type, area($mm^2$), thickness, metal discount, length of laser cutting line($m$), count of holes, discount of laser cutting
+3. Input the product details, including product name, count, metal type, area($mm^2$), thickness, length of laser cutting line($m$), count of holes
 4. Click compute button(the calculator one), it will compute all information of the product
-5. Fill up your information such as address, phone number, date, customer, list id
+5. Fill up information such as address, phone number, date, client, order id
 6. Click screenshot button and save the picture
+7. Configure db_setting in mysqlConnector
+8. When the application is closed, all data will be automatically saved
 
 ## Additional
 |Thickness| steel | stainless steel | aluminum | hole |
@@ -31,3 +33,8 @@ Calculating laser cutting cost and generating a sales slip
 
 Laser cutting price in different thickness (per meter).  
 If radius of holes greater than 7mm, it would be double price.
+
+##Environment
+python 3.10.6
+QT5
+MySQL
