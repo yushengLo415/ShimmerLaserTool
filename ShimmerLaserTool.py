@@ -3,12 +3,11 @@ from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtGui import QFont
 from PIL import ImageGrab
 from ComboBox import ComboBox
-from MetalSheet import MetalSheet
-from LaserInformation import LaserInfo
 from Product import Product
 from Model import Model
 import re
 import UI
+import atexit
 
 _model = Model()
 _font = QFont()
@@ -18,7 +17,7 @@ _font.setPointSize(10)
 def Init():
     header = ui._table.horizontalHeader()
     header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
-    for i in range(7, 16):
+    for i in range(8, 11):
         header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
 
 def EventRegister():
@@ -26,39 +25,31 @@ def EventRegister():
     ui._minusButton.clicked.connect(MinusButtonClicked)
     ui._computeButton.clicked.connect(ComputeButtonClick)
     ui._screenshotButton.clicked.connect(ScreenshotClicked)
+    ui._blackIronPriceTextEdit.textChanged.connect(IntValidator)
+    ui._whiteIronPriceTextEdit.textChanged.connect(IntValidator)
+    ui._aluminumPriceTextEdit.textChanged.connect(IntValidator)
     ui._blackIronPriceTextEdit.textChanged.connect(PriceUpdate)
     ui._whiteIronPriceTextEdit.textChanged.connect(PriceUpdate)
     ui._aluminumPriceTextEdit.textChanged.connect(PriceUpdate)
+    atexit.register(exit_handler)
 
 def PlusButtonClicked():
     ui._table.setRowCount(ui._table.rowCount() + 1)
-    metalSheet = MetalSheet("0.00000785", 0, 0)
-    laserInformation = LaserInfo(0, 0, 0)
-    product = Product("請輸入件號/品名規格", 0, metalSheet, 1, laserInformation, 1)
+    
+    product = Product()
     _model.AddProduct(product)
-    SetItemToTable(product.GetName(), ui._table.rowCount() - 1, 0)
-    SetItemToTable(product.GetCount(), ui._table.rowCount() - 1, 1)
-    SetItemToTable(product.GetMetalSheet().GetArea(), ui._table.rowCount() - 1, 3)
-    SetItemToTable(product.GetMetalSheet().GetThickness(), ui._table.rowCount() - 1, 4)
-    SetItemToTable(product.GetMetalSheet().GetWeight(), ui._table.rowCount() - 1, 5)
-    SetItemToTable(ui._blackIronPriceTextEdit.toPlainText(), ui._table.rowCount() - 1, 6)
-    SetItemToTable(product.GetMetalSheetPrice(), ui._table.rowCount() - 1, 7)
-    SetItemToTable(product.GetMetalSheetDiscount(), ui._table.rowCount() - 1, 8)
-    SetItemToTable(product.GetDiscountedMetalSheetPrice(), ui._table.rowCount() - 1, 9)
-    SetItemToTable(product.GetLaserInfo().GetLength(), ui._table.rowCount() - 1, 10)
-    SetItemToTable(product.GetLaserInfo().GetLargeHoleCount(), ui._table.rowCount() - 1, 11)
-    SetItemToTable(product.GetLaserInfo().GetTinyHoleCount(), ui._table.rowCount() - 1, 12)
-    SetItemToTable(product.GetLaserCost(), ui._table.rowCount() - 1, 13)
-    SetItemToTable(product.GetLaserDiscount(), ui._table.rowCount() - 1, 14)
-    SetItemToTable(product.GetDiscountedLaserCost(), ui._table.rowCount() - 1, 15)
-    SetItemToTable(product.GetTotal(), ui._table.rowCount() - 1, 16)
 
-    #new a combo box
+    SetItemToTable("請輸入件號/品名規格", ui._table.rowCount() - 1, 0)
+
+    #新增combo box
     combobox = ComboBox()
-    combobox.initUI()
     combobox.currentIndexChanged.connect(ComboBoxIndexChanged)
     ui._table.setCellWidget(ui._table.rowCount() - 1, 2, combobox)
 
+    #initialize 1~12格
+    for i in range(1, 13):
+        SetItemToTable(0, ui._table.rowCount() - 1, i)
+    
 def SetItemToTable(content, i, j):
     item = QtWidgets.QTableWidgetItem()
     
@@ -74,11 +65,12 @@ def SetItemToTable(content, i, j):
 
 def ComboBoxIndexChanged(index):
     if index == 0:
-        _model.GetProductList()[ui._table.currentRow()].GetMetalSheet().SetDensity(0.00000785)
+        _model.GetProductList()[ui._table.currentRow()].SetType(0)
     elif index == 1:
-        _model.GetProductList()[ui._table.currentRow()].GetMetalSheet().SetDensity(0.00000793)
+        _model.GetProductList()[ui._table.currentRow()].SetType(1)
     elif index == 2:
-        _model.GetProductList()[ui._table.currentRow()].GetMetalSheet().SetDensity(0.00000271)     
+        _model.GetProductList()[ui._table.currentRow()].SetType(2)
+    PriceUpdate()
 
 def is_float(string):
     try:
@@ -101,8 +93,6 @@ def MinusButtonClicked():
         del _model.GetProductList()[ui._table.currentRow()]
         ui._table.removeRow(ui._table.currentRow())
 
-
-
 def ComputeButtonClick():
     if ui._table.rowCount() == 0:
         return
@@ -113,58 +103,34 @@ def ComputeButtonClick():
             product.SetCount(int(ui._table.item(i, 1).text()))
             product.GetMetalSheet().SetArea(float(ui._table.item(i, 3).text()))
             product.GetMetalSheet().SetThickness(int(ui._table.item(i, 4).text()))
-            product.SetMetalSheetDiscount(float(ui._table.item(i, 8).text()))
-            product.GetLaserInfo().SetLength(float(ui._table.item(i, 10).text()))
-            product.GetLaserInfo().SetLargeHoleCount(int(ui._table.item(i, 11).text()))
-            product.GetLaserInfo().SetTinyHoleCount(int(ui._table.item(i, 12).text()))
-            product.SetLaserDiscount(float(ui._table.item(i, 14).text()))
+            product.GetLaserInfo().SetThickness(int(ui._table.item(i, 4).text()))
+            product.GetMetalSheet().SetUnitPrice(int(ui._table.item(i, 6).text()))
+            product.GetLaserInfo().SetLength(float(ui._table.item(i, 8).text()))
+            product.GetLaserInfo().SetLargeHoleCount(int(ui._table.item(i, 9).text()))
+            product.GetLaserInfo().SetTinyHoleCount(int(ui._table.item(i, 10).text()))
+        UpdateView()
     except ValueError:
         print("illgeal setting")
+        ui._table.item(i, 0).setText("這筆訂單輸入格式有誤!!!!!" + product.GetName())
 
-    _model.ComputeAll()
-    UpdateView()
+    
 
 def UpdateView():
     if ui._table.rowCount() == 0:
         return
 
-    for i in range(ui._table.rowCount()):
-        product = _model.GetProductList()[i]
-        metalSheet = product.GetMetalSheet()
-        laserInfo = product.GetLaserInfo()
-
-        ui._table.item(i, 1).setText(str(product.GetCount()))
-        ui._table.item(i, 3).setText(str(metalSheet.GetArea()))
-
-        ui._table.item(i, 4).setText(str(metalSheet.GetThickness()))
-        ui._table.item(i, 5).setText(str(round(metalSheet.GetWeight(), 6)))
-
-        #以密度決定單價
-        if metalSheet.GetDensity() == 0.00000785:
-            ui._table.item(i, 6).setText(ui._blackIronPriceTextEdit.toPlainText())
-        elif metalSheet.GetDensity() == 0.00000793:
-            ui._table.item(i, 6).setText(ui._whiteIronPriceTextEdit.toPlainText())
-        else:
-            ui._table.item(i, 6).setText(ui._aluminumPriceTextEdit.toPlainText())
-            
-        ui._table.item(i, 7).setText(str(round(product.GetMetalSheetPrice(), 6)))
-        ui._table.item(i, 8).setText(str(round(product.GetMetalSheetDiscount(), 6)))
-        ui._table.item(i, 9).setText(str(round(product.GetDiscountedMetalSheetPrice(), 6)))
-        ui._table.item(i, 10).setText(str(round(laserInfo.GetLength(), 6)))
-        ui._table.item(i, 11).setText(str(laserInfo.GetLargeHoleCount()))
-        ui._table.item(i, 12).setText(str(laserInfo.GetTinyHoleCount()))
-        ui._table.item(i, 13).setText(str(round(product.GetLaserCost(), 6)))
-        ui._table.item(i, 14).setText(str(round(product.GetLaserDiscount(), 6)))
-        ui._table.item(i, 15).setText(str(round(product.GetDiscountedLaserCost(), 6)))
-        ui._table.item(i, 16).setText(str(round(product.GetTotal(), 6)))
-
+    try:
+        for i in range(ui._table.rowCount()):
+            product = _model.GetProductList()[i]
+            ui._table.item(i, 5).setText(str(round(product.GetMetalSheet().GetWeight(), 6)))
+            ui._table.item(i, 7).setText(str(round(product.GetMetalSheet().GetPrice(), 6)))
+            ui._table.item(i, 11).setText(str(round(product.GetLaserInfo().GetPrice(), 6)))
+            ui._table.item(i, 12).setText(str(round(product.GetPrice(), 6)))
         ui._total.setText(format(round(_model.GetTotalPrice(), 0), ","))
-
-    #更新客戶資訊    
-    _model.SetClientsInfo(ui._customerName.text(), ui._phone.text(), ui._address.text(), ui._serialNumber.text())
-    #更新所有資訊到資料庫
-    _model.UpdateDB()
-
+    except KeyError as ke:
+        print("Wrong thickness! It should not be ", ke)
+        ui._table.item(i, 0).setText("不支援此厚度!!!!!" + product.GetName())
+    
 
 def ScreenshotClicked():
     qrect = Widget.pos()
@@ -178,6 +144,12 @@ def ScreenshotClicked():
     if fileName:
             img.save(fileName)
             print(f'Saved screenshot as {fileName}')
+
+def IntValidator():    
+    #限制價格只能輸入整數
+    QtextShouldNotBeNonnumbericNeitherStartWithZero(ui._blackIronPriceTextEdit)
+    QtextShouldNotBeNonnumbericNeitherStartWithZero(ui._whiteIronPriceTextEdit)
+    QtextShouldNotBeNonnumbericNeitherStartWithZero(ui._aluminumPriceTextEdit)
 
 def QtextShouldNotBeNonnumbericNeitherStartWithZero(qtext):
     #remove first word if is 0
@@ -195,10 +167,20 @@ def QtextShouldNotBeNonnumbericNeitherStartWithZero(qtext):
             qtext.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
 def PriceUpdate():
-    QtextShouldNotBeNonnumbericNeitherStartWithZero(ui._blackIronPriceTextEdit)
-    QtextShouldNotBeNonnumbericNeitherStartWithZero(ui._whiteIronPriceTextEdit)
-    QtextShouldNotBeNonnumbericNeitherStartWithZero(ui._aluminumPriceTextEdit)
-    _model.SetNewPriceToModel(ui._blackIronPriceTextEdit.toPlainText(), ui._whiteIronPriceTextEdit.toPlainText(), ui._aluminumPriceTextEdit.toPlainText())
+    #更新所有商品的單價
+    for i in range(ui._table.rowCount()):
+        if _model.GetProductList()[i].GetType() == 0: #黑鐵
+            ui._table.item(i, 6).setText(ui._blackIronPriceTextEdit.toPlainText())
+        elif _model.GetProductList()[i].GetType() == 1: #白鐵
+            ui._table.item(i, 6).setText(ui._whiteIronPriceTextEdit.toPlainText())
+        elif _model.GetProductList()[i].GetType() == 2: #鋁
+            ui._table.item(i, 6).setText(ui._aluminumPriceTextEdit.toPlainText())
+        else:
+            print("ComboBox index error")
+
+def exit_handler():
+    _model.SetClientsInfo(ui._clientName.text(), ui._phone.text(), ui._address.text(), ui._serialNumber.text())
+    _model.UpdateDB()
 
 if __name__ == "__main__":
     import sys

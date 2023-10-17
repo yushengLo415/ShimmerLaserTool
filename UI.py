@@ -184,7 +184,7 @@ class Ui__form(object):
         font.setPointSize(40)
         self._computeButton.setFont(font)
         self._computeButton.setStyleSheet("background: rgb(140, 140, 140);\n"
-        "padding-bottom: 7px;")
+"padding-bottom: 7px;")
         self._computeButton.setObjectName("_computeButton")
         self._screenshotButton = QtWidgets.QPushButton(self._toolBarWidget)
         self._screenshotButton.setGeometry(QtCore.QRect(20, 420, 100, 40))
@@ -219,14 +219,14 @@ class Ui__form(object):
         self._addressWidget.setSizePolicy(sizePolicy)
         self._addressWidget.setMinimumSize(QtCore.QSize(400, 0))
         self._addressWidget.setObjectName("_addressWidget")
-        self._customerName = QtWidgets.QLineEdit(self._addressWidget)
-        self._customerName.setGeometry(QtCore.QRect(100, 110, 400, 20))
+        self._clientName = QtWidgets.QLineEdit(self._addressWidget)
+        self._clientName.setGeometry(QtCore.QRect(100, 110, 400, 20))
         font = QtGui.QFont()
         font.setFamily("微軟正黑體")
         font.setPointSize(12)
-        self._customerName.setFont(font)
-        self._customerName.setFrame(False)
-        self._customerName.setObjectName("_customerName")
+        self._clientName.setFont(font)
+        self._clientName.setFrame(False)
+        self._clientName.setObjectName("_clientName")
         self._address = QtWidgets.QLineEdit(self._addressWidget)
         self._address.setGeometry(QtCore.QRect(100, 140, 400, 20))
         font = QtGui.QFont()
@@ -235,15 +235,15 @@ class Ui__form(object):
         self._address.setFont(font)
         self._address.setFrame(False)
         self._address.setObjectName("_address")
-        self._customerNameLabel = QtWidgets.QLabel(self._addressWidget)
-        self._customerNameLabel.setGeometry(QtCore.QRect(10, 110, 90, 20))
+        self._clientNameLabel = QtWidgets.QLabel(self._addressWidget)
+        self._clientNameLabel.setGeometry(QtCore.QRect(10, 110, 90, 20))
         font = QtGui.QFont()
         font.setFamily("微軟正黑體")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self._customerNameLabel.setFont(font)
-        self._customerNameLabel.setObjectName("_customerNameLabel")
+        self._clientNameLabel.setFont(font)
+        self._clientNameLabel.setObjectName("_clientNameLabel")
         self._addressLabel = QtWidgets.QLabel(self._addressWidget)
         self._addressLabel.setGeometry(QtCore.QRect(10, 140, 90, 20))
         font = QtGui.QFont()
@@ -254,8 +254,8 @@ class Ui__form(object):
         self._addressLabel.setFont(font)
         self._addressLabel.setObjectName("_addressLabel")
         self._addressLabel.raise_()
-        self._customerNameLabel.raise_()
-        self._customerName.raise_()
+        self._clientNameLabel.raise_()
+        self._clientName.raise_()
         self._address.raise_()
         self._addressLayout.addWidget(self._addressWidget)
         self.horizontalLayout_4.addLayout(self._addressLayout)
@@ -460,17 +460,17 @@ class Ui__form(object):
         self._table.setLayoutDirection(QtCore.Qt.LeftToRight)
         self._table.setAutoFillBackground(False)
         self._table.setStyleSheet("QTableWidget {\n"
-        "    /* 设置表格的背景颜色 */\n"
-        "    background-color: rgb(255, 255, 255);\n"
-        "}\n"
-        "\n"
-        "QScrollBar:horizontal {\n"
-        "    background:rgb(154, 154, 154);\n"
-        "}\n"
-        "\n"
-        "QTableWidget::item {\n"
-        "    background-color: rgb(255, 255, 255);  \n"
-        "}")
+"    /* 设置表格的背景颜色 */\n"
+"    background-color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QScrollBar:horizontal {\n"
+"    background:rgb(154, 154, 154);\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    background-color: rgb(255, 255, 255);  \n"
+"}")
         self._table.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self._table.setLineWidth(0)
         self._table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -482,7 +482,7 @@ class Ui__form(object):
         self._table.setGridStyle(QtCore.Qt.SolidLine)
         self._table.setWordWrap(True)
         self._table.setRowCount(0)
-        self._table.setColumnCount(17)
+        self._table.setColumnCount(13)
         self._table.setObjectName("_table")
         item = QtWidgets.QTableWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignCenter)
@@ -575,34 +575,6 @@ class Ui__form(object):
         font.setPointSize(10)
         item.setFont(font)
         self._table.setHorizontalHeaderItem(12, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setTextAlignment(QtCore.Qt.AlignCenter)
-        font = QtGui.QFont()
-        font.setFamily("微軟正黑體")
-        font.setPointSize(10)
-        item.setFont(font)
-        self._table.setHorizontalHeaderItem(13, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setTextAlignment(QtCore.Qt.AlignCenter)
-        font = QtGui.QFont()
-        font.setFamily("微軟正黑體")
-        font.setPointSize(10)
-        item.setFont(font)
-        self._table.setHorizontalHeaderItem(14, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setTextAlignment(QtCore.Qt.AlignCenter)
-        font = QtGui.QFont()
-        font.setFamily("微軟正黑體")
-        font.setPointSize(10)
-        item.setFont(font)
-        self._table.setHorizontalHeaderItem(15, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setTextAlignment(QtCore.Qt.AlignCenter)
-        font = QtGui.QFont()
-        font.setFamily("微軟正黑體")
-        font.setPointSize(10)
-        item.setFont(font)
-        self._table.setHorizontalHeaderItem(16, item)
         self._table.horizontalHeader().setVisible(True)
         self._table.horizontalHeader().setCascadingSectionResizes(False)
         self._table.horizontalHeader().setDefaultSectionSize(110)
@@ -623,31 +595,31 @@ class Ui__form(object):
         self._blackIronLabel.setText(_translate("_form", "黑鐵價格"))
         self._blackIronPriceTextEdit.setToolTip(_translate("_form", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self._blackIronPriceTextEdit.setHtml(_translate("_form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-        "p, li { white-space: pre-wrap; }\n"
-        "</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-        "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0</p></body></html>"))
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0</p></body></html>"))
         self._whiteIronPriceTextEdit.setToolTip(_translate("_form", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self._whiteIronPriceTextEdit.setHtml(_translate("_form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-        "p, li { white-space: pre-wrap; }\n"
-        "</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-        "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
         self._whiteIronLabel.setText(_translate("_form", "白鐵價格"))
         self._aluminumPriceTextEdit.setToolTip(_translate("_form", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self._aluminumPriceTextEdit.setHtml(_translate("_form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-        "p, li { white-space: pre-wrap; }\n"
-        "</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-        "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Lato\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Arial\';\">0</span></p></body></html>"))
         self._aluminumLabel_.setText(_translate("_form", "鋁價格"))
         self._plusButton.setText(_translate("_form", "+"))
         self._minusButton.setText(_translate("_form", "-"))
         self._computeButton.setText(_translate("_form", "🖩"))
         self._screenshotButton.setText(_translate("_form", "📷"))
-        self._customerName.setText(_translate("_form", "1111111111111111111111111111111"))
+        self._clientName.setText(_translate("_form", "1111111111111111111111111111111"))
         self._address.setText(_translate("_form", "111111111111111111111111111111111"))
-        self._customerNameLabel.setText(_translate("_form", "客戶名稱:"))
+        self._clientNameLabel.setText(_translate("_form", "客戶名稱:"))
         self._addressLabel.setText(_translate("_form", "送貨地址:"))
         self._billOfSaleLabel.setText(_translate("_form", "銷貨單"))
         self._phoneLabel.setText(_translate("_form", "電話:"))
@@ -677,22 +649,22 @@ class Ui__form(object):
         item = self._table.horizontalHeaderItem(7)
         item.setText(_translate("_form", "板材費用"))
         item = self._table.horizontalHeaderItem(8)
-        item.setText(_translate("_form", "打折(板材費用)"))
-        item = self._table.horizontalHeaderItem(9)
-        item.setText(_translate("_form", "板材費用(打折後)"))
-        item = self._table.horizontalHeaderItem(10)
         item.setText(_translate("_form", "切割長度(m)"))
-        item = self._table.horizontalHeaderItem(11)
+        item = self._table.horizontalHeaderItem(9)
         item.setText(_translate("_form", "大孔(>14mm)"))
-        item = self._table.horizontalHeaderItem(12)
+        item = self._table.horizontalHeaderItem(10)
         item.setText(_translate("_form", "小孔(<14mm)"))
-        item = self._table.horizontalHeaderItem(13)
+        item = self._table.horizontalHeaderItem(11)
         item.setText(_translate("_form", "雷射工資"))
-        item = self._table.horizontalHeaderItem(14)
-        item.setText(_translate("_form", "打折(雷射工資)"))
-        item = self._table.horizontalHeaderItem(15)
-        item.setText(_translate("_form", "雷射工資(打折後)"))
-        item = self._table.horizontalHeaderItem(16)
+        item = self._table.horizontalHeaderItem(12)
         item.setText(_translate("_form", "合計"))
 
 
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    _form = QtWidgets.QWidget()
+    ui = Ui__form()
+    ui.setupUi(_form)
+    _form.show()
+    sys.exit(app.exec_())
