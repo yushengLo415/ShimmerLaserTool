@@ -34,7 +34,7 @@ Calculating laser cutting cost and generating a sales slip
 Laser cutting price in different thickness (per meter).  
 If radius of holes greater than 7mm, it would be double price.
 
-##Environment
-python 3.10.6
-QT5
-MySQL
+## Environment
+python 3.10.6  
+QT5  
+MySQL  
