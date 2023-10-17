@@ -97,9 +97,10 @@ def is_int(string):
 def MinusButtonClicked():
     if ui._table.rowCount() == 0 or ui._table.rowCount() == -1:
         return
-    
-    del _model.GetProductList()[ui._table.currentRow()]
-    ui._table.removeRow(ui._table.currentRow())
+    if ui._table.currentRow() != -1:
+        del _model.GetProductList()[ui._table.currentRow()]
+        ui._table.removeRow(ui._table.currentRow())
+
 
 
 def ComputeButtonClick():
@@ -158,6 +159,11 @@ def UpdateView():
         ui._table.item(i, 16).setText(str(round(product.GetTotal(), 6)))
 
         ui._total.setText(format(round(_model.GetTotalPrice(), 0), ","))
+
+    #更新客戶資訊    
+    _model.SetClientsInfo(ui._customerName.text(), ui._phone.text(), ui._address.text(), ui._serialNumber.text())
+    #更新所有資訊到資料庫
+    _model.UpdateDB()
 
 
 def ScreenshotClicked():

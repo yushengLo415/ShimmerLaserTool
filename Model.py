@@ -1,4 +1,4 @@
-import numpy
+from mysqlConnector import mysqlConnector
 
 class Model:
 
@@ -7,7 +7,8 @@ class Model:
     _whiteIronPrice = 0
     _aluminumPrice = 0
     _totalPrice = 0
-
+    _dbConnector = mysqlConnector()
+ 
     #""中為厚度，[]中分為別黑鐵、白鐵、鋁切割長度/米的價格與打孔的價格
     #若孔徑 > 14mm，打孔的額外收費雙倍
     _laserCostDict = {
@@ -38,17 +39,17 @@ class Model:
 
     def AddProduct(self, product):
         self.tempProduct = product
-        self.__computeMetalSheetWeight()
-        self.__computePrice()
-        self.__computeDiscountAndTotal()
+        self._computeMetalSheetWeight()
+        self._computePrice()
+        self._computeDiscountAndTotal()
         self._productList.append(self.tempProduct)
 
     #重量 = 密度*面積*厚度
-    def __computeMetalSheetWeight(self):
+    def _computeMetalSheetWeight(self):
         metalSheet = self.tempProduct.GetMetalSheet()
         metalSheet.SetWeight(metalSheet.GetDensity() * metalSheet.GetArea() * metalSheet.GetThickness())
 
-    def __computePrice(self):
+    def _computePrice(self):
         metalSheet = self.tempProduct.GetMetalSheet()
         laserInfo = self.tempProduct.GetLaserInfo()
 
@@ -72,7 +73,7 @@ class Model:
         laserCost = (lineCost + largeHoleCost + tinyHoleCost) * self.tempProduct.GetCount()
         self.tempProduct.SetLaserCost(laserCost)
 
-    def __computeDiscountAndTotal(self):
+    def _computeDiscountAndTotal(self):
         discountedMetalSheetPrice = self.tempProduct.GetMetalSheetPrice() * self.tempProduct.GetMetalSheetDiscount()
         discountedLaserCost = self.tempProduct.GetLaserCost() * self.tempProduct.GetLaserDiscount()
         self.tempProduct.SetDiscountedMetalSheetPrice(discountedMetalSheetPrice)
@@ -92,9 +93,9 @@ class Model:
     def ComputeAll(self):
         for product in self._productList:
             self.tempProduct = product
-            self.__computeMetalSheetWeight()
-            self.__computePrice()
-            self.__computeDiscountAndTotal()
+            self._computeMetalSheetWeight()
+            self._computePrice()
+            self._computeDiscountAndTotal()
 
     def GetTotalPrice(self):
         self._totalPrice = 0
@@ -102,3 +103,14 @@ class Model:
             self._totalPrice += product.GetTotal()
             
         return self._totalPrice
+    
+    def SetClientsInfo(self, client, contactInfo, address, serialNumber):
+        self._client = []
+        self._client.append(client)
+        self._client.append(contactInfo)
+        self._client.append(address)
+        self._orderID = serialNumber
+
+    def UpdateDB(self):
+        self._dbConnector.CreateClient(self._client)
+        self._dbConnector.CreateOrder(self._orderID, self._client[0])
