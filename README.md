@@ -5,14 +5,14 @@ Calculating laser cutting cost and generating a sales slip
 ![image](https://github.com/yushengLo415/ShimmerLaserTool/blob/master/img/UI.jpg)
 
 ## How to use
-1. Input the price of different metal
-2. Click/Minus plus button to add new products/delete products
-3. Input the product details, including product name, count, metal type, area($mm^2$), thickness, length of laser cutting line($m$), count of holes
-4. Click compute button(the calculator one), it will compute all information of the product
-5. Fill up information such as address, phone number, date, client, order id
-6. Click screenshot button and save the picture
-7. Configure db_setting in mysqlConnector
-8. When the application is closed, all data will be automatically saved
+1. Configure db_setting in db_setting.json before launching
+2. Input the price of different metal
+3. Click/Minus plus button to add new products/delete products
+4. Input the product details, including product name, count, metal type, area($mm^2$), thickness, length of laser cutting line($m$), count of holes
+5. Click compute button(the calculator one), it will compute all information of the product
+6. Fill up information such as address, phone number, date, client, order id
+7. Click screenshot button and save the picture
+8. When the application is closed, all data will be automatically saved into database
 
 ## Additional
 |Thickness| steel | stainless steel | aluminum | hole |

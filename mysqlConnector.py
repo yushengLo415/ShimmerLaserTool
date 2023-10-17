@@ -1,24 +1,21 @@
 import pymysql
 from datetime import date
+import json
 
 class mysqlConnector:
-
-    db_setting = {
-        "host": "",
-        "port": 0,
-        "user": "",
-        "password": "",
-        "db": "",
-        "charset": ""
-    }
-
+      
     def __init__(self):
-        self.conn = pymysql.connect(**self.db_setting)
-        print("DB connect sucessfully")
+        try:
+            with open('db_setting.json', 'r') as json_file:
+                self.db_setting = json.load(json_file)
+            self.conn = pymysql.connect(**self.db_setting)
+            print("連線成功")
+        except pymysql.MySQLError as e:
+            print("連線失敗，請重新設定資料庫")
 
     def Disconnect(self):
         self.conn.close()
-        print("DB disconnect")
+        print("Disconnect")
 
     def CreateClient(self, client):
         try:
