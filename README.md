@@ -1,20 +1,22 @@
 # ShimmerLaserTool
-Calculating laser cutting cost and generating a sales slip
+ShimmerLaserTool is an application designed for calculating laser cutting costs and generating sales receipts.
 
 ## User Interface
 ![image](https://github.com/yushengLo415/ShimmerLaserTool/blob/master/img/UI.jpg)
 
-## How to use
-1. Configure db_setting in db_setting.json before launching
-2. Input the price of different metal
-3. Click/Minus plus button to add new products/delete products
-4. Input the product details, including product name, count, metal type, area($mm^2$), thickness, length of laser cutting line($m$), count of holes
-5. Click compute button(the calculator one), it will compute all information of the product
-6. Fill up information such as address, phone number, date, client, order id
-7. Click screenshot button and save the picture
-8. When the application is closed, all data will be automatically saved into database
+## Overview of Features
+- Cost Calculation: Calculate the cost of laser cutting based on different metal materials and thicknesses.
+- Sales Receipt Generation: Provide a simple interface for users to input product details and generate sales receipts.
 
-## Additional
+## Usage Instructions
+1. Configure Database Settings: Before launching the application, configure the database settings in db_setting.json.
+2. Input Metal Prices: Input the unit prices for different metals within the application.
+3. Add Product Information: Use the plus or minus buttons to add or remove products, then fill in the details for each product.
+4. Calculate Costs: Click the calculate button to compute the laser cutting cost for each product.
+5. Generate Receipts: Fill in the relevant information for the receipt, then click the screenshot button to save the generated sales receipt image.
+6. Automatic Saving: When the application is closed, all data will be automatically saved to the database without manual intervention.
+
+## Additional Information
 |Thickness| steel | stainless steel | aluminum | hole |
 | :-: | :-: | :-: | :-: | :-: |
 | 0 | 0 | 0 | 0 | 0 |
@@ -31,10 +33,4 @@ Calculating laser cutting cost and generating a sales slip
 | 16 | 200 | 400 | 400 | 6 |
 | 20 | 300 | 600 | 600 | 8 |
 
-Laser cutting price in different thickness (per meter).  
-If radius of holes greater than 7mm, it would be double price.
-
-## Environment
-python 3.10.6  
-QT5  
-MySQL  
+Thickness vs. Price Chart: Provides laser cutting prices for different thicknesses per meter, along with price adjustments for hole sizes.
